@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Blood help</string>
+    <string name="title_activity_maps">Blood banks near you</string>
+    <string name="title_activity_maps_activitylk">Map</string>
+</resources>

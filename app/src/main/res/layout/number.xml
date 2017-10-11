@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_corners"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="-4dp"
+        android:paddingEnd="48dp"
+        android:paddingStart="48dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="monospace"
+            android:text="Enter your phone number"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:drawablePadding="-24dp"
+            android:drawableStart="@drawable/phone"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="Number"
+            android:inputType="number"
+            android:maxEms="10"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:minEms="10"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"
+            android:layout_marginBottom="-8dp"
+            android:layout_marginTop="20dp"
+            android:background="#808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+
+            <Button
+                android:id="@+id/ok"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Ok"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

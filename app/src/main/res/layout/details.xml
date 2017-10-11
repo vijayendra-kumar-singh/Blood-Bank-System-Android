@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/mname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/home"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="This is the name of the blood bank"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/mopen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".7"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/open"
+                android:gravity="center_vertical"
+                android:fontFamily="monospace"
+                android:text="open now - No"
+                android:textAlignment="gravity"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+            <TextView
+                android:id="@+id/mrating"
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".3"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/ic_star"
+                android:fontFamily="monospace"
+                android:text="4.5/5"
+                android:textAlignment="gravity"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mnumber"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/phone"
+            android:fontFamily="monospace"
+            android:hint="Contact - 9003692804"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <TextView
+            android:id="@+id/mwebsite"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/globe"
+            android:fontFamily="monospace"
+            android:hint="Website - "
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <TextView
+            android:id="@+id/maddress"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/pin"
+            android:fontFamily="monospace"
+            android:hint="Address"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+<!--
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height=".5dp"
+            android:layout_marginTop="12dp"
+            android:background="#808080" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/call"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:src="@drawable/call" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+
+            <ImageButton
+                android:id="@+id/web"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:src="@drawable/webv" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+
+            <ImageButton
+                android:id="@+id/direction"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".33"
+                android:src="@drawable/direction" />
+
+        </LinearLayout>
+-->
+    </LinearLayout>
+
+</LinearLayout>

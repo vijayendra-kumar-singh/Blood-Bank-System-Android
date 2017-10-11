@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/round_corners"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        android:paddingBottom="-4dp"
+        android:paddingEnd="42dp"
+        android:paddingStart="44dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="monospace"
+            android:text="Search donors"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/pincode"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/back"
+                android:drawablePadding="4dp"
+                android:drawableStart="@drawable/pin"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="pincode"
+                android:inputType="number"
+                android:maxEms="6"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:minEms="6"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:src="@drawable/btype" />
+
+                <Spinner
+                    android:id="@+id/btype"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toEndOf="@+id/img"
+                    android:background="@drawable/back"
+                    android:fontFamily="monospace"
+                    android:gravity="center_vertical"
+                    android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                    android:textColor="#808080" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"
+            android:layout_marginBottom="-6dp"
+            android:layout_marginTop="16dp"
+            android:background="#808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+
+            <Button
+                android:id="@+id/ok"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Ok"
+                android:textAllCaps="false"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

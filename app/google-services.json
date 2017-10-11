@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "430112745550",
+    "firebase_url": "https://blood-help-india.firebaseio.com",
+    "project_id": "blood-help-india",
+    "storage_bucket": "blood-help-india.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430112745550:android:f29a8b3b4982063b",
+        "android_client_info": {
+          "package_name": "com.example.mohan.bbms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430112745550-7oaddteimugkgthnbv152p8c1rprlokq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzkWbdTLy81V3_nz3sCOVcQHDNUrtCdeU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

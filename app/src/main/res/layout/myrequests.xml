@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:paddingEnd="-16dp"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/name"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="Name"
+            android:padding="8dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:background="@drawable/back"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/date"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="Date"
+                android:textAlignment="gravity"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+            <TextView
+                android:id="@+id/btype"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:background="@drawable/back"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/btype"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Blood"
+                android:padding="8dp"
+                android:textAlignment="gravity"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/back"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/units"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Units"
+                android:padding="8dp"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+            <TextView
+                android:id="@+id/pincode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/back"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/pin"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Pincode"
+                android:padding="8dp"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/phone"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="Contact number"
+            android:padding="8dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/qwqw"
+    tools:context="com.example.mohan.bbms.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="125dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="monospace"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimary"
+            android:textSize="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:fontFamily="cursive"
+            android:text="Every willing donor is here"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/r"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="14dp"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textSize="18sp">
+
+            </Button>
+
+            <Button
+                android:id="@+id/l"
+                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/r"
+                android:paddingStart="14dp"
+                android:text="Log in"
+                android:textAllCaps="false"
+                android:textSize="18sp">
+
+            </Button>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/search"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Search Blood Banks"
+            android:textAllCaps="false"
+            android:textSize="18sp">
+
+        </Button>
+
+        <Button
+            android:id="@+id/nearby"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nearby"
+            android:textAllCaps="false"
+            android:textSize="18sp">
+
+        </Button>
+
+    </LinearLayout>
+
+</RelativeLayout>

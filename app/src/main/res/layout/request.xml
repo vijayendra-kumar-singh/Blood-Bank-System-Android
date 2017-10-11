@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/round_corners"
+        android:orientation="vertical"
+        android:paddingBottom="-4dp"
+        android:paddingEnd="24dp"
+        android:paddingStart="24dp"
+        android:paddingTop="4dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="monospace"
+            android:text="Request for help"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/name"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:maxEms="25"
+            android:maxLength="25"
+            android:maxLines="1"
+            android:minLines="1"
+            android:padding="8dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".48"
+                android:gravity="center_vertical"
+                android:paddingEnd="16dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:src="@drawable/btype" />
+
+                    <Spinner
+                        android:id="@+id/btype"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_toEndOf="@+id/img"
+                        android:background="@drawable/back"
+                        android:fontFamily="monospace"
+                        android:gravity="center"
+                        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                        android:textColor="#808080" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:background="@drawable/back"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/date"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="Date"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@drawable/back"
+                android:drawablePadding="16dp"
+                android:drawableStart="@drawable/units"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Units"
+                android:inputType="number"
+                android:maxEms="2"
+                android:maxLength="2"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+            <EditText
+                android:id="@+id/pincode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:background="@drawable/back"
+                android:drawablePadding="12dp"
+                android:drawableStart="@drawable/pin"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Pincode"
+                android:inputType="number"
+                android:maxEms="6"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:minEms="6"
+                android:minLines="1"
+                android:padding="8dp"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
+            android:drawablePadding="16dp"
+            android:drawableStart="@drawable/phone"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:hint="Contact number"
+            android:inputType="number"
+            android:maxEms="10"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:minEms="10"
+            android:minLines="1"
+            android:padding="8dp"
+            android:textAlignment="gravity"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height=".5dp"
+            android:layout_marginBottom="-8dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="#808080" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="#FF000000" />
+
+            <Button
+                android:id="@+id/postrequest"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Post"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="12sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

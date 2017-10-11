@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/qwqw"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/logo"
+            android:contentDescription="@string/app_name" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="12dp"
+            android:paddingEnd="72dp"
+            android:paddingStart="64dp">
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:drawablePadding="-16dp"
+                android:drawableStart="@drawable/phone"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Number"
+                android:inputType="number"
+                android:maxEms="10"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textAlignment="center"
+
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:textColor="#808080" />
+
+            <EditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:drawablePadding="-16dp"
+                android:drawableStart="@drawable/pass"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxEms="25"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+                android:textColor="#808080" />
+
+            <CheckBox
+                android:id="@+id/show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:fontFamily="monospace"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="Show password"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonLogin"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#FF3D00"
+            android:fontFamily="sans-serif"
+            android:text="Log in"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="monospace"
+            android:text="Forgot password?"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
+
+    </LinearLayout>
+
+</RelativeLayout>

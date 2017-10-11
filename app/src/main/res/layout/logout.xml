@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/round_corners"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="-4dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="20dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Are you sure you want to logout?"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
+
+        <View
+            android:layout_width="200dp"
+            android:layout_height=".5dp"
+            android:layout_marginBottom="-8dp"
+            android:layout_marginTop="20dp"
+            android:background="#808080" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/no"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="No"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+            <View
+                android:layout_width="1dip"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:background="#808080" />
+
+            <Button
+                android:id="@+id/yes"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:fontFamily="monospace"
+                android:text="Yes"
+                android:textAllCaps="false"
+                android:textColor="#808080"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
