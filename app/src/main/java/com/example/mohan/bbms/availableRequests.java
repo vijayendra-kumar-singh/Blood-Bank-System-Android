@@ -1163,7 +1163,7 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
         RequestParams params = new RequestParams();
         params.put("number", num);
         String url = "https://blood-help-india.herokuapp.com/forgototp.php";
-        String message = "Checking ...";
+        String message = "Sending OTP ...";
 
         httpRequest(getApplicationContext(), availableRequests.this, url, params, message, "forgot");
 
