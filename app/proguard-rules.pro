@@ -45,15 +45,17 @@
 -keepattributes SourceFile,LineNumberTable
 -repackageclasses ''
 
--keep public class * extends android.app.Activity
+-keep public class * extends android.app.AppCompatActivity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
--keep public class com.android.vending.licensing.ILicensingService
+-keep public class * extends com.google.firebase.iid.FirebaseInstanceIdService
+-keep public class * extends com.google.firebase.messaging.FirebaseMessagingService
 -dontnote com.android.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
 
 # Explicitly preserve all serialization members. The Serializable interface
 # is only a marker interface, so it wouldn't save them.
@@ -102,6 +104,7 @@
 
 
 -keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
 -keep class com.google.firebase.** { *; }
 -keep class com.android.support.** { *; }
 -keep class cz.msebera.android.httpclient.** { *; }
