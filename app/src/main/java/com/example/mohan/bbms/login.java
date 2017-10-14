@@ -249,7 +249,33 @@ public class login extends AppCompatActivity {
                             Log.i("---------success------", "---------success------" + String.valueOf(response));
                             try {
                                 if (Objects.equals(response.getString("status"), "success")) {
-                                    Toast.makeText(login.this, "New password is " + response.getString("result"), Toast.LENGTH_LONG).show();
+                                    String mypin = null;
+                                    try {
+                                        mypin = response.getString("result");
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    LayoutInflater inflater = getLayoutInflater();
+                                    View alertLayout = inflater.inflate(R.layout.pin, null, true);
+                                    final TextView myp = alertLayout.findViewById(R.id.showpin);
+
+                                    final Button ok = alertLayout.findViewById(R.id.ok);
+
+                                    AlertDialog.Builder alert = new AlertDialog.Builder(login.this);
+                                    alert.setView(alertLayout);
+                                    alert.setCancelable(false);
+                                    final AlertDialog dialog = alert.create();
+                                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                                    dialog.show();
+
+                                    myp.setText("Your new password is " + mypin);
+
+                                    ok.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            dialog.dismiss();
+                                        }
+                                    });
                                 } else {
                                     Toast.makeText(login.this, response.getString("result"), Toast.LENGTH_SHORT).show();
                                 }

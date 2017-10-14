@@ -1399,11 +1399,33 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
             }
 
         } else if(Objects.equals(functionName, "reset")) {
+            String mypin = null;
             try {
-                Toast.makeText(availableRequests.this, "New password is " + response.getString("result"), Toast.LENGTH_LONG).show();
+                mypin = response.getString("result");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            LayoutInflater inflater = getLayoutInflater();
+            View alertLayout = inflater.inflate(R.layout.pin, null, true);
+            final TextView myp = alertLayout.findViewById(R.id.showpin);
+
+            final Button ok = alertLayout.findViewById(R.id.ok);
+
+            AlertDialog.Builder alert = new AlertDialog.Builder(availableRequests.this);
+            alert.setView(alertLayout);
+            alert.setCancelable(false);
+            final AlertDialog dialog = alert.create();
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+
+            myp.setText("Your new Password is " + mypin);
+
+            ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
         }
     }
 

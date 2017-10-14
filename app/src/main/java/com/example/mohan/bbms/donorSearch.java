@@ -167,11 +167,15 @@ public class donorSearch extends AppCompatActivity implements AdapterView.OnItem
         }
 
         ListAdapter adapter = new SimpleAdapter(
-                donorSearch.this, list, R.layout.banks,
+                donorSearch.this, list, R.layout.donor,
                 new String[]{"name"},
                 new int[]{R.id.name});
 
         listView.setAdapter(adapter);
+    }
+
+    private void showData(JSONArray r){
+
     }
 
     @Override
