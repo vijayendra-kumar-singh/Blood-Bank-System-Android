@@ -20,32 +20,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:layout_marginStart="-6dp"
             android:layout_marginTop="4dp"
             android:fontFamily="monospace"
-            android:layout_marginStart="-6dp"
-            android:text="Enter the OTP"            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:text="Enter the OTP"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
             android:textColor="#808080"
             android:textStyle="bold" />
 
         <EditText
-            android:layout_marginStart="-6dp"
             android:id="@+id/num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="-8dp"
             android:background="@drawable/back"
-            android:drawablePadding="-8dp"
+            android:drawablePadding="-6dp"
             android:drawableStart="@drawable/pass"
             android:fontFamily="monospace"
             android:hint="OTP"
             android:inputType="number"
-            android:padding="8dp"
             android:maxEms="6"
             android:maxLength="6"
             android:maxLines="1"
-            android:textAlignment="center"
             android:minEms="6"
-            android:textColor="#808080"            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-            />
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
 
         <View
             android:layout_width="match_parent"

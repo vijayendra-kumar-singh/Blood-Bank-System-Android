@@ -1,6 +1,5 @@
 package com.example.mohan.bbms;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,7 +8,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -17,15 +15,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,16 +32,22 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
-public class donorSearch extends AppCompatActivity implements AdapterView.OnItemClickListener, ConnectivityReceiver.ConnectivityReceiverListener {
+public class donorSearch extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     SwipeRefreshLayout mSwipeRefreshLayout;
-    private ListView listView;
     private String btype, pincode, number;
     Snackbar snackbar;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +65,6 @@ public class donorSearch extends AppCompatActivity implements AdapterView.OnItem
         SharedPreferences sharedPreferences = donorSearch.this.getSharedPreferences("loginStatus", Context.MODE_PRIVATE);
         number = sharedPreferences.getString("number", null);
 
-        listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(this);
-
-        listView.setDivider(null);
-        listView.setDividerHeight(0);
-
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -84,15 +77,62 @@ public class donorSearch extends AppCompatActivity implements AdapterView.OnItem
 
         Intent I = getIntent();
 
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+       // expListView.setChildDivider(null);
+
         try {
             JSONObject js = new JSONObject(I.getStringExtra("data"));
-            show(js.getJSONArray("result"));
+            showData(js.getJSONArray("result"));
             JSONObject jo = (js.getJSONArray("result")).getJSONObject(0);
             btype = jo.getString("btype");
             pincode = jo.getString("pincode");
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+
+        expListView.setAdapter(listAdapter);
+
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
+
+                if (childPosition == 1) {
+                    android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(donorSearch.this);
+                    alertDialog.setMessage("Do you want to call " + listDataHeader.get(groupPosition) + "?");
+
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(Intent.ACTION_CALL);
+
+                            String nn = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                            intent.setData(Uri.parse("tel:" + "+91" + nn.split(":")[1].trim()));
+                            if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                showSettingsAlert();
+                                return;
+                            }
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    alertDialog.show();
+
+                }
+                return false;
+            }
+        });
+
     }
 
     private void getData() {
@@ -115,7 +155,7 @@ public class donorSearch extends AppCompatActivity implements AdapterView.OnItem
                 Log.i("---------success------", "---------success------" + String.valueOf(response));
                 try {
                     if (Objects.equals(response.getString("status"), "success")) {
-                        show(response.getJSONArray("result"));
+                        showData(response.getJSONArray("result"));
                     } else {
                         Toast.makeText(donorSearch.this, response.getString("result"), Toast.LENGTH_SHORT).show();
                         finish();
@@ -136,100 +176,33 @@ public class donorSearch extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    private void show(JSONArray r) {
+    private void showData(JSONArray r) {
 
-        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
         try {
 
             for (int i = 0; i < r.length(); i++) {
                 JSONObject jo = r.getJSONObject(i);
                 String name = jo.getString("name");
                 String number = jo.getString("number");
-                String blood = (((jo.getString("btype")).replace("0", " -")).replace("1", " +"));
                 String age = jo.getString("age");
                 String sex = jo.getString("sex");
-                String pincode = jo.getString("pincode");
 
+                listDataHeader.add(name);
 
-                HashMap<String, String> donors = new HashMap<>();
-                donors.put("name", name);
-                donors.put("number", number);
-                donors.put("age", age + " years");
-                donors.put("blood", blood);
-                donors.put("sex", sex);
-                donors.put("pincode", pincode);
+                List<String> top250 = new ArrayList<>();
+                top250.add("Age/Sex : " + age + "years (" + sex + ")");
+                top250.add("Number  : " + number);
 
-                list.add(donors);
+                listDataChild.put(listDataHeader.get(i), top250);
+
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        ListAdapter adapter = new SimpleAdapter(
-                donorSearch.this, list, R.layout.donor,
-                new String[]{"name"},
-                new int[]{R.id.name});
-
-        listView.setAdapter(adapter);
-    }
-
-    private void showData(JSONArray r){
-
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        final HashMap map = (HashMap) adapterView.getItemAtPosition(i);
-
-        LayoutInflater inflater = getLayoutInflater();
-        View alertLayout = inflater.inflate(R.layout.donors, null, true);
-
-        final TextView name = alertLayout.findViewById(R.id.name);
-        final TextView age = alertLayout.findViewById(R.id.age);
-        final TextView gender = alertLayout.findViewById(R.id.gender);
-        final TextView number = alertLayout.findViewById(R.id.number);
-
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setView(alertLayout);
-        final AlertDialog dialog = alert.create();
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.show();
-
-        name.setText((String) map.get("name"));
-        age.setText((String) map.get("age"));
-        gender.setText((String) map.get("sex"));
-        number.setText((String) map.get("number"));
-
-        number.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(donorSearch.this);
-                alertDialog.setMessage("Do you want to call " + map.get("name") + "?");
-
-                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Intent intent = new Intent(Intent.ACTION_CALL);
-                        intent.setData(Uri.parse("tel:" + "+91" + map.get("number")));
-                        if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                            showSettingsAlert();
-                            return;
-                        }
-                        startActivity(intent);
-
-                    }
-                });
-
-                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                alertDialog.show();
-            }
-        });
     }
 
     public void showSettingsAlert() {

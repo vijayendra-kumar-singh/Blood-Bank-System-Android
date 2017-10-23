@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/qwqw"
+    android:padding="12dp"
     tools:context="com.example.mohan.bbms.availableRequests">
 
     <RelativeLayout
@@ -14,16 +15,37 @@
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/filterp">
 
-            <ListView
-                android:id="@+id/listView"
+            <ExpandableListView
+                android:id="@+id/lvExp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp" />
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:childDivider="#00000000" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
+
+        <EditText
+            android:id="@+id/filterp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/round_corners2"
+            android:descendantFocusability="beforeDescendants"
+            android:focusableInTouchMode="true"
+            android:hint="Enter pincode to filter"
+            android:inputType="number"
+            android:maxLength="6"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+            android:textColor="#808080" />
 
         <RelativeLayout
             android:id="@+id/nd"

@@ -26,7 +26,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -38,11 +37,9 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,16 +64,22 @@ import cz.msebera.android.httpclient.Header;
 
 import static android.view.View.GONE;
 
-public class availableRequests extends AppCompatActivity implements AdapterView.OnItemClickListener, ConnectivityReceiver.ConnectivityReceiverListener {
+public class availableRequests extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener {
 
     SimpleSideDrawer slide_me;
     SwipeRefreshLayout mSwipeRefreshLayout;
-    private ListView listView;
     Context context;
     GPSTracker gps;
     Snackbar snackbar;
     double lattitude, longitude;
     String year, month, date;
+
+    EditText fp;
+
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     Calendar calendar = Calendar.getInstance();
 
@@ -120,11 +123,47 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
             }
         });
 
-        listView = (ListView) findViewById(R.id.listView);
-        listView.setOnItemClickListener(this);
+        expListView = (ExpandableListView) findViewById(R.id.lvExp);
+        //   expListView.setChildDivider(null);
 
-        listView.setDivider(null);
-        listView.setDividerHeight(0);
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
+
+                if (childPosition == 2) {
+                    android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(availableRequests.this);
+                    alertDialog.setMessage("Do you want to call " + listDataHeader.get(groupPosition) + "?");
+
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(Intent.ACTION_CALL);
+
+                            String nn = listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
+
+                            intent.setData(Uri.parse("tel:" + "+91" + nn.split(":")[1].trim()));
+                            if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                showSettingsAlert();
+                                return;
+                            }
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    alertDialog.show();
+
+                }
+                return false;
+            }
+        });
 
         slide_me = new SimpleSideDrawer(this);
         slide_me.setRightBehindContentView(R.layout.slide_menu);
@@ -147,6 +186,8 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
         ImageButton post_button = (ImageButton) findViewById(R.id.post_button);
         TextView become_donor = (TextView) findViewById(R.id.become_donor);
 
+        fp = (EditText) findViewById(R.id.filterp);
+
         if (Objects.equals(utype, "Donor")) {
             nd.setVisibility(GONE);
             become_donor.setVisibility(GONE);
@@ -159,6 +200,7 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
             become_donor.setVisibility(View.VISIBLE);
             nearby.setVisibility(GONE);
             search_user.setVisibility(GONE);
+            fp.setVisibility(View.GONE);
             post_request.setVisibility(GONE);
             search_bank.setVisibility(GONE);
         }
@@ -1221,7 +1263,11 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
 
     private void showreq(JSONArray r) {
 
-        ArrayList<HashMap<String, String>> list = new ArrayList<>();
+        listDataHeader = new ArrayList<>();
+        listDataChild = new HashMap<>();
+
+        int count =0;
+
         try {
 
             for (int i = 0; i < r.length(); i++) {
@@ -1233,27 +1279,40 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
                 String pincode = jo.getString("pincode");
                 String date = jo.getString("date");
 
-                HashMap<String, String> requests = new HashMap<>();
-                requests.put("name", name);
-                requests.put("number", number);
-                requests.put("units", unit);
-                requests.put("btype", btype);
-                requests.put("pincode", pincode);
-                requests.put("date", date);
+                if (fp.getText().toString().trim().length() == 6) {
+                    if (Objects.equals(fp.getText().toString().trim(), pincode)) {
+                        listDataHeader.add(name);
 
-                list.add(requests);
+                        List<String> top250 = new ArrayList<>();
+                        top250.add("Requirement : " + unit + " of " + btype + " type.");
+                        top250.add("Date : " + date);
+                        top250.add("Pincode : " + pincode);
+                        top250.add("Number : " + number);
+
+                        listDataChild.put(listDataHeader.get(count), top250);
+                        count++;
+                    }
+                } else {
+                    listDataHeader.add(name);
+
+                    List<String> top250 = new ArrayList<>();
+                    top250.add("Requirement : " + unit + " of " + btype + " type.");
+                    top250.add("Date : " + date);
+                    top250.add("Pincode : " + pincode);
+                    top250.add("Number : " + number);
+
+                    listDataChild.put(listDataHeader.get(count), top250);
+                    count++;
+                }
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        ListAdapter adapter = new SimpleAdapter(
-                availableRequests.this, list, R.layout.myrequests,
-                new String[]{"number", "name", "units", "pincode", "btype", "date"},
-                new int[]{R.id.num, R.id.name, R.id.unit, R.id.pincode, R.id.btype, R.id.date});
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
-        listView.setAdapter(adapter);
+        expListView.setAdapter(listAdapter);
     }
 
     private void httpRequest(final Context mcontext, Activity activity, String url, RequestParams params, String message, final String functionName) {
@@ -1398,7 +1457,7 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
                 e.printStackTrace();
             }
 
-        } else if(Objects.equals(functionName, "reset")) {
+        } else if (Objects.equals(functionName, "reset")) {
             String mypin = null;
             try {
                 mypin = response.getString("result");
@@ -1484,7 +1543,7 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
         });
     }
 
-    private void change(final Intent intent){
+    private void change(final Intent intent) {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -1563,35 +1622,6 @@ public class availableRequests extends AppCompatActivity implements AdapterView.
             textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             snackbar.show();
         }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        final HashMap map = (HashMap) adapterView.getItemAtPosition(i);
-
-        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(availableRequests.this);
-        alertDialog.setMessage("Do you want to call " + map.get("name") + "?");
-
-        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + map.get("number")));
-                if (ActivityCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    showSettingsAlert();
-                    return;
-                }
-                change(intent);
-
-            }
-        });
-
-        alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        alertDialog.show();
     }
 
     @Override
