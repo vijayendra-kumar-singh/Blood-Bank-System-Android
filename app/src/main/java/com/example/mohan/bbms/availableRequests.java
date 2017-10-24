@@ -75,6 +75,7 @@ public class availableRequests extends AppCompatActivity implements Connectivity
     String year, month, date;
 
     EditText fp;
+    Spinner fb;
 
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
@@ -131,7 +132,7 @@ public class availableRequests extends AppCompatActivity implements Connectivity
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
 
-                if (childPosition == 2) {
+                if (childPosition == 3) {
                     android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(availableRequests.this);
                     alertDialog.setMessage("Do you want to call " + listDataHeader.get(groupPosition) + "?");
 
@@ -148,18 +149,14 @@ public class availableRequests extends AppCompatActivity implements Connectivity
                                 return;
                             }
                             startActivity(intent);
-
                         }
                     });
-
                     alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
                         }
                     });
-
                     alertDialog.show();
-
                 }
                 return false;
             }
@@ -186,6 +183,7 @@ public class availableRequests extends AppCompatActivity implements Connectivity
         ImageButton post_button = (ImageButton) findViewById(R.id.post_button);
         TextView become_donor = (TextView) findViewById(R.id.become_donor);
 
+        fb = (Spinner) findViewById(R.id.fb);
         fp = (EditText) findViewById(R.id.filterp);
 
         if (Objects.equals(utype, "Donor")) {
@@ -1266,7 +1264,7 @@ public class availableRequests extends AppCompatActivity implements Connectivity
         listDataHeader = new ArrayList<>();
         listDataChild = new HashMap<>();
 
-        int count =0;
+        int count = 0;
 
         try {
 
@@ -1280,7 +1278,48 @@ public class availableRequests extends AppCompatActivity implements Connectivity
                 String date = jo.getString("date");
 
                 if (fp.getText().toString().trim().length() == 6) {
-                    if (Objects.equals(fp.getText().toString().trim(), pincode)) {
+                    if (Objects.equals(fb.getSelectedItem().toString(), "select")) {
+                        if (Objects.equals(fp.getText().toString().trim(), pincode)) {
+                            listDataHeader.add(name);
+
+                            List<String> top250 = new ArrayList<>();
+                            top250.add("Requirement : " + unit + " of " + btype + " type.");
+                            top250.add("Date : " + date);
+                            top250.add("Pincode : " + pincode);
+                            top250.add("Number : " + number);
+
+                            listDataChild.put(listDataHeader.get(count), top250);
+                            count++;
+                        }
+                    } else if (!Objects.equals(fb.getSelectedItem().toString(), "select")) {
+                        if (Objects.equals(fp.getText().toString().trim(), pincode) && Objects.equals(fb.getSelectedItem().toString(), btype)) {
+                            listDataHeader.add(name);
+
+                            List<String> top250 = new ArrayList<>();
+                            top250.add("Requirement : " + unit + " of " + btype + " type.");
+                            top250.add("Date : " + date);
+                            top250.add("Pincode : " + pincode);
+                            top250.add("Number : " + number);
+
+                            listDataChild.put(listDataHeader.get(count), top250);
+                            count++;
+                        }
+                    }
+                } else if (fp.getText().toString().trim().length() != 6) {
+                    if (!Objects.equals(fb.getSelectedItem().toString(), "select")) {
+                        if (Objects.equals(fb.getSelectedItem().toString(), btype)) {
+                            listDataHeader.add(name);
+
+                            List<String> top250 = new ArrayList<>();
+                            top250.add("Requirement : " + unit + " of " + btype + " type.");
+                            top250.add("Date : " + date);
+                            top250.add("Pincode : " + pincode);
+                            top250.add("Number : " + number);
+
+                            listDataChild.put(listDataHeader.get(count), top250);
+                            count++;
+                        }
+                    } else if (Objects.equals(fb.getSelectedItem().toString(), "select")) {
                         listDataHeader.add(name);
 
                         List<String> top250 = new ArrayList<>();
@@ -1292,20 +1331,8 @@ public class availableRequests extends AppCompatActivity implements Connectivity
                         listDataChild.put(listDataHeader.get(count), top250);
                         count++;
                     }
-                } else {
-                    listDataHeader.add(name);
-
-                    List<String> top250 = new ArrayList<>();
-                    top250.add("Requirement : " + unit + " of " + btype + " type.");
-                    top250.add("Date : " + date);
-                    top250.add("Pincode : " + pincode);
-                    top250.add("Number : " + number);
-
-                    listDataChild.put(listDataHeader.get(count), top250);
-                    count++;
                 }
             }
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

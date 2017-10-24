@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/qwqw"
-    android:padding="12dp"
     tools:context="com.example.mohan.bbms.availableRequests">
 
     <RelativeLayout
@@ -16,7 +15,7 @@
             android:id="@+id/swipeToRefresh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/filterp">
+            android:layout_above="@+id/filterl">
 
             <ExpandableListView
                 android:id="@+id/lvExp"
@@ -27,8 +26,8 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-        <EditText
-            android:id="@+id/filterp"
+        <LinearLayout
+            android:id="@+id/filterl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -36,16 +35,47 @@
             android:layout_marginBottom="4dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/round_corners2"
-            android:descendantFocusability="beforeDescendants"
-            android:focusableInTouchMode="true"
-            android:hint="Enter pincode to filter"
-            android:inputType="number"
-            android:maxLength="6"
-            android:maxLines="1"
-            android:padding="8dp"
-            android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
-            android:textColor="#808080" />
+            android:paddingBottom="2dp"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="2dp">
+
+            <EditText
+                android:id="@+id/filterp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:hint="pincode"
+                android:inputType="number"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textAlignment="center"
+                android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small"
+                android:textColor="#808080"
+                android:windowSoftInputMode="stateAlwaysHidden" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="#808080" />
+
+            <Spinner
+                android:id="@+id/fb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:entries="@array/btype"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="#808080" />
+
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/nd"
