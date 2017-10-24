@@ -145,6 +145,7 @@ public class availableRequests extends AppCompatActivity implements Connectivity
 
                             intent.setData(Uri.parse("tel:" + "+91" + nn.split(":")[1].trim()));
                             if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
                                 showSettingsAlert();
                                 return;
                             }
